@@ -174,4 +174,24 @@ Trabalhar pontos arquiteturais de forma intencional.
 
 ### Caracteristícas estruturais
 
+- O software precisa ser configurável
+- A aplicação precisa ser extensivel, de modo que outras coisas possam ser plugáveis nela
+  - Não deve ser necessário fazer mudanças estruturais na aplicação para adicionar uma nova gateway é por que a aplicação está projetada de forma incorreta
+- Fácil instalação
+- Reuso de componentes
+- Internacionalização
+  - Valores monetários
+  - Horários
+- Fácil manutenção
+  - Correção de bugs deve ser fácil
+  - Adicionar novas features deve ser fácil
+  - O sistema deve ter testes
+- Portabilidade
+  - diversos bancos de dados
+  - gateways
+- Fácil suporte
+  - Foque em observabilidade
+  - logs
+  - debugging
+
 ### Cross-Cutting
