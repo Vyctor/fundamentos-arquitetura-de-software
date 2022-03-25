@@ -195,3 +195,13 @@ Trabalhar pontos arquiteturais de forma intencional.
   - debugging
 
 ### Cross-Cutting
+
+- Acessibilidade
+- Processo de retenção e recuperação de dados
+  - Quanto tempo os dados serão mantidos?
+- Autenticação e autorização
+- Parte Legal
+  - Confomidade com as leis do país que o aplicativo executa
+- Privacidade
+- Segurança
+- Usabilidade
