@@ -17,6 +17,9 @@
     - [Aula 08 - Pilares da arquitetura de software](#aula-08---pilares-da-arquitetura-de-software)
     - [Aula 09 - Requisitos arquiteturais (RAs)](#aula-09---requisitos-arquiteturais-ras)
   - [Caracteristícas Arquiteturais](#caracteristícas-arquiteturais)
+    - [Caracteristícas operacionais](#caracteristícas-operacionais)
+    - [Caracteristícas estruturais](#caracteristícas-estruturais)
+    - [Cross-Cutting](#cross-cutting)
 
 ## Fundamentos
 
@@ -130,6 +133,9 @@ Sustentabilidade no dia zero
     - [Aula 08 - Pilares da arquitetura de software](#aula-08---pilares-da-arquitetura-de-software)
     - [Aula 09 - Requisitos arquiteturais (RAs)](#aula-09---requisitos-arquiteturais-ras)
   - [Caracteristícas Arquiteturais](#caracteristícas-arquiteturais)
+    - [Caracteristícas operacionais](#caracteristícas-operacionais)
+    - [Caracteristícas estruturais](#caracteristícas-estruturais)
+    - [Cross-Cutting](#cross-cutting)
 
 ### Aula 08 - Pilares da arquitetura de software
 
@@ -150,3 +156,22 @@ Sustentabilidade no dia zero
 - Marketing
 
 ## Caracteristícas Arquiteturais
+
+Trabalhar pontos arquiteturais de forma intencional.
+
+### Caracteristícas operacionais
+
+- Disponibilidade
+- Recuperação de desastres
+- Performance
+- Recuperação (backup)
+  - Testar Backup
+- Confiabilidade e segurança
+- Robustez
+- Escalabilidade
+  - Escala vertical (aumentar recursos)
+  - Horizontal (adicionar instâncias)
+
+### Caracteristícas estruturais
+
+### Cross-Cutting
