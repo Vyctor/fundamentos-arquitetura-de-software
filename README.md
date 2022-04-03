@@ -6,7 +6,7 @@
       - [Tipos de Arquitetura](#tipos-de-arquitetura)
       - [Arquitetura Tecnológica](#arquitetura-tecnológica)
       - [Arquitetura Corporativa](#arquitetura-corporativa)
-    - [Aula 02 - Arquitetura de soluçao](#aula-02---arquitetura-de-soluçao)
+    - [Aula 02 - Arquitetura de solução](#aula-02---arquitetura-de-solução)
       - [Arquitetura de solução](#arquitetura-de-solução)
     - [Aula 03 - Arquitetura de software](#aula-03---arquitetura-de-software)
       - [Arquiteto de software](#arquiteto-de-software)
@@ -20,6 +20,20 @@
     - [Caracteristícas operacionais](#caracteristícas-operacionais)
     - [Caracteristícas estruturais](#caracteristícas-estruturais)
     - [Cross-Cutting](#cross-cutting)
+  - [Performance](#performance)
+    - [Perspectivas para arquitetar software de qualidade](#perspectivas-para-arquitetar-software-de-qualidade)
+    - [Métricas para medir performance](#métricas-para-medir-performance)
+      - [Como melhorar a performance?](#como-melhorar-a-performance)
+      - [Principais razões para a baixa performance](#principais-razões-para-a-baixa-performance)
+      - [Principais formas para aumentar a eficiência](#principais-formas-para-aumentar-a-eficiência)
+    - [Capacidade computacional: Escala vertical vs Escala horizontal](#capacidade-computacional-escala-vertical-vs-escala-horizontal)
+      - [Escala vertical](#escala-vertical)
+      - [Escala horizontal](#escala-horizontal)
+      - [Diferenças entre concorrência e paralelismo](#diferenças-entre-concorrência-e-paralelismo)
+    - [Caching](#caching)
+      - [Caching Exclusivo vs Compartilhado](#caching-exclusivo-vs-compartilhado)
+    - [Caching vs Edge Computing](#caching-vs-edge-computing)
+      - [Edge Computing](#edge-computing)
 
 ## Fundamentos
 
@@ -52,7 +66,7 @@
   - Sistemas "core"
   - Migrações
 
-### Aula 02 - Arquitetura de soluçao
+### Aula 02 - Arquitetura de solução
 
 #### Arquitetura de solução
 
@@ -86,7 +100,7 @@ O processo de arquitetar um software estabelece que o que está sendo desenvolvi
 ### Aula 04 - O papel do arquiteto de software
 
 - Transformar requisitos de negócio em padrões arquiteturais
-- Orquestar pessoas desenvolvedores e experts de domínio
+- Orquestrar pessoas desenvolvedores e experts de domínio
 - Entender de forma profunda conceitos e modelos arquiteturais
 - Auxilia na tomada de decisão nos momentos de crise
 - Reforça boas práticas de desenvolvimento
@@ -109,33 +123,12 @@ Sustentabilidade no dia zero
 
 ### Aula 06 - Arquitetura vs Design
 
-"Atividades relacionadas a arquitetura de software são sempre de design. Entretanto, nem todas as atividades de design são sobre arquitetura. O objetivo primário da arquitetura de software é garantir que os atributos de qualidade, restrições de alto nível e os objetivos do negócio, sejam atendidos pelo sitema. Qualquer decisão de design que não tenha relação com este objetivo não é arquitetural. Todas as decisões de design para um componente que não sejam visíveis fora dele, geralmente, também não são." (Elemar Jr.)
+"Atividades relacionadas a arquitetura de software são sempre de design. Entretanto, nem todas as atividades de design são sobre arquitetura. O objetivo primário da arquitetura de software é garantir que os atributos de qualidade, restrições de alto nível e os objetivos do negócio, sejam atendidos pelo sistema. Qualquer decisão de design que não tenha relação com este objetivo não é arquitetural. Todas as decisões de design para um componente que não sejam visíveis fora dele, geralmente, também não são." (Elemar Jr.)
 
 - Arquitetura: Escopo global ou alto nível
 - Design: Escopo local
 
 ### Aula 07 - Sustentabilidade no dia zero
-
-- [Fundamentos de Arquitetura de Software](#fundamentos-de-arquitetura-de-software)
-  - [Fundamentos](#fundamentos)
-    - [Aula 01 - Arquitetura tecnológica e corporativa](#aula-01---arquitetura-tecnológica-e-corporativa)
-      - [Tipos de Arquitetura](#tipos-de-arquitetura)
-      - [Arquitetura Tecnológica](#arquitetura-tecnológica)
-      - [Arquitetura Corporativa](#arquitetura-corporativa)
-    - [Aula 02 - Arquitetura de soluçao](#aula-02---arquitetura-de-soluçao)
-      - [Arquitetura de solução](#arquitetura-de-solução)
-    - [Aula 03 - Arquitetura de software](#aula-03---arquitetura-de-software)
-      - [Arquiteto de software](#arquiteto-de-software)
-    - [Aula 04 - O papel do arquiteto de software](#aula-04---o-papel-do-arquiteto-de-software)
-    - [Aula 05 - Por que aprender arquitetura de software?](#aula-05---por-que-aprender-arquitetura-de-software)
-    - [Aula 06 - Arquitetura vs Design](#aula-06---arquitetura-vs-design)
-    - [Aula 07 - Sustentabilidade no dia zero](#aula-07---sustentabilidade-no-dia-zero)
-    - [Aula 08 - Pilares da arquitetura de software](#aula-08---pilares-da-arquitetura-de-software)
-    - [Aula 09 - Requisitos arquiteturais (RAs)](#aula-09---requisitos-arquiteturais-ras)
-  - [Caracteristícas Arquiteturais](#caracteristícas-arquiteturais)
-    - [Caracteristícas operacionais](#caracteristícas-operacionais)
-    - [Caracteristícas estruturais](#caracteristícas-estruturais)
-    - [Cross-Cutting](#cross-cutting)
 
 ### Aula 08 - Pilares da arquitetura de software
 
@@ -175,7 +168,7 @@ Trabalhar pontos arquiteturais de forma intencional.
 ### Caracteristícas estruturais
 
 - O software precisa ser configurável
-- A aplicação precisa ser extensivel, de modo que outras coisas possam ser plugáveis nela
+- A aplicação precisa ser extensível, de modo que outras coisas possam ser plugáveis nela
   - Não deve ser necessário fazer mudanças estruturais na aplicação para adicionar uma nova gateway é por que a aplicação está projetada de forma incorreta
 - Fácil instalação
 - Reuso de componentes
@@ -201,7 +194,103 @@ Trabalhar pontos arquiteturais de forma intencional.
   - Quanto tempo os dados serão mantidos?
 - Autenticação e autorização
 - Parte Legal
-  - Confomidade com as leis do país que o aplicativo executa
+  - Conformidade com as leis do país que o aplicativo executa
 - Privacidade
 - Segurança
 - Usabilidade
+
+## Performance
+
+### Perspectivas para arquitetar software de qualidade
+
+- Performance
+- Escalabilidade
+- Resiliência
+
+### Métricas para medir performance
+
+- É o desempenho que um software possui para completar um determinado workload.
+- As unidades de medida para avaliarmos a performance de um software são:
+  - Latência ou response time
+  - Throughput (quantas requisições um software aguentar receber)
+- Ter um software performático é diferente de ter um software escalável
+
+#### Como melhorar a performance?
+
+- Diminuindo a latência
+  - Normalmente medida em milliseconds
+  - É afetada pelo tempo de processamento da aplicação, rede e chamadas externas
+- Aumentando throughput
+  - Aumentando quantidade de requisições
+  - É totalmente ligado a latência
+  - Diminuir a quantidade de conexões presas à aplicação
+
+#### Principais razões para a baixa performance
+
+- Processamento ineficiente
+- Recursos computacionais limitados
+- Trabalhar de forma bloqueante
+- Acesso serial a recursos
+
+#### Principais formas para aumentar a eficiência
+
+- Escala da capacidade computacional (CPU, Disco, Memória, Rede)
+- Lógica por trás do software (Algoritmos, queries, overhead de frameworks)
+- Concorrência e paralelismo
+- Banco de dados (tipos de bancos, schema, normalização, indices, apm)
+- Caching
+
+### Capacidade computacional: Escala vertical vs Escala horizontal
+
+#### Escala vertical
+
+Cada vez que preciso aumentar a capacidade de lidar com mais requisições eu aumento a capacidade computacional.
+
+#### Escala horizontal
+
+Ao invés de aumentar a capacidade computacional da máquina eu aumento a quantidade de máquinas.
+
+#### Diferenças entre concorrência e paralelismo
+
+"Concorrência é sobre lidar com muitas coisas ao mesmo tempo. Paralelismo é fazer muitas coisas ao mesmo tempo." - Rob Pike
+
+### Caching
+
+- Cache na borda / Edge computing
+- Dados estáticos
+- Páginas web
+- Funções internas
+  - Evitar processamento de algoritmos pesados
+  - Acesso ao banco de dados
+- Objetos
+
+#### Caching Exclusivo vs Compartilhado
+
+- Exclusivo
+  - Baixa latência
+  - Duplicado entre os nós
+  - Problemas relacionados a sessões
+- Compartilhado
+  - Maior latência
+  - Não há duplicação
+  - Sessões compartilhadas
+  - Banco de dados externo
+    - MySQL
+    - Redis
+    - Memcache
+
+### Caching vs Edge Computing
+
+#### Edge Computing
+
+Ajuda a fazer com que a informação do usuário esteja perto dele, evitando tráfego desnecessário de informações.
+
+- Cache realizado mais próximo ao usuário
+- Evita a requisição chegar até o Cloud Provider / Infra
+- Normalmente arquivos estáticos
+- CDN (Content Delivery Network)
+- Cloudflare workers
+  - Cloudflare é uma plataforma de Cache Computer.
+  - Permite deploy de aplicações em locais mais próximos da localização física do usuário
+- Vercel
+- Akamai
