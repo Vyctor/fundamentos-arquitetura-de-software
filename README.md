@@ -34,6 +34,11 @@
       - [Caching Exclusivo vs Compartilhado](#caching-exclusivo-vs-compartilhado)
     - [Caching vs Edge Computing](#caching-vs-edge-computing)
       - [Edge Computing](#edge-computing)
+  - [Escalabilidade](#escalabilidade)
+    - [Escalabilidade vs Performance](#escalabilidade-vs-performance)
+    - [Escalando aplicações](#escalando-aplicações)
+    - [Escala de banco de dados](#escala-de-banco-de-dados)
+    - [Proxy reverso](#proxy-reverso)
 
 ## Fundamentos
 
@@ -44,7 +49,7 @@
 - Software
 - Solução
 - Tecnológica
-- Cooporativa
+- Corporativa
 
 #### Arquitetura Tecnológica
 
@@ -294,3 +299,53 @@ Ajuda a fazer com que a informação do usuário esteja perto dele, evitando tr�
   - Permite deploy de aplicações em locais mais próximos da localização física do usuário
 - Vercel
 - Akamai
+
+## Escalabilidade
+
+É a capacidade de sistemas suportarem o aumento, ou redução dos workloads, incrementando ou reduzindo os custos em menor ou igual proporção.
+
+### Escalabilidade vs Performance
+
+Enquanto performance tem o foco em reduzir a latência e aumentar o throughput, a escalabilidade visa termos a possibilidade de aumentar ou diminuir o throughput adicionando ou removendo a capacidade computacional.
+
+### Escalando aplicações
+
+Quando vou escalar o software horizontalmente eu vou aumentar o número de máquinas, quando diminuir o uso vou descartar essas máquinas adicionais.
+As máquinas devem ser adicionadas e removidas rapidamente.
+
+- Disco efêmero
+  - Tudo que eu salvar em disco na máquina deve poder ser apagado
+  - O disco deve ser utilizado para gravar arquivos temporários.
+- Servidor de aplicação vs Servidor de assets
+  - Devem ser servidores diferentes o local da aplicação e o local de armazenamento de imagens, etc...
+- Cache centralizado
+  - O cache não vai ficar na sua máquina
+  - Deverá ficar em um servidor externo específico para cache
+- Sessões centralizadas
+  - As sessões devem estar centralizadas em um único servidor, onde as máquinas escaladas se servirão dos dados
+- Upload e gravação de arquivos
+  - Devem estar armazenados em um servidor de arquivos a parte
+
+**Escalar software significa descentralizar.**
+
+### Escala de banco de dados
+
+- Aumentando recursos computacionais
+- Distribuindo responsabilidades (escrita vs leitura)
+  - Criar um banco específico para leitura e outro específico para escrita
+- Shards de forma horizontal
+  - Mudar o formato
+  - Adicionar várias máquinas
+  - Dividir partições no banco de dados
+- Serverless
+  - Não se preocupar a nível de servidor
+- Otimização de queries e índices
+  - Sistema de APM para banco de dados
+  - Trabalhar com índices de forma consciente
+  - Explain nas queries
+  - CQRS (command Query Responsability Segregation)
+
+### Proxy reverso
+
+É um servidor que fica na frente dos servidores web e encaminha as solicitações do cliente, por exemplo um navegador web, para esses servidores web.
+Recebe todas as requisições e baseado na requisição redistribui a solicitação para determinado servidor.
