@@ -40,6 +40,16 @@
     - [Escala de banco de dados](#escala-de-banco-de-dados)
     - [Proxy reverso](#proxy-reverso)
       - [Soluções populares de proxy reverso](#soluções-populares-de-proxy-reverso)
+  - [Resiliência](#resiliência)
+    - [Quais as estratégias de resiliência?](#quais-as-estratégias-de-resiliência)
+    - [Health Check](#health-check)
+    - [Rate Limiting](#rate-limiting)
+    - [Circuit Breaker](#circuit-breaker)
+    - [API Gateway](#api-gateway)
+    - [Service mesh](#service-mesh)
+    - [Comunicação assíncrona](#comunicação-assíncrona)
+    - [Garantias de entrega com Retry](#garantias-de-entrega-com-retry)
+    - [Situações complexas e decisões de alto nível](#situações-complexas-e-decisões-de-alto-nível)
 
 ## Fundamentos
 
@@ -356,3 +366,75 @@ Recebe todas as requisições e baseado na requisição redistribui a solicitaç
 - Nginx
 - HAProxy (High Availability Proxy)
 - Traefik
+
+## Resiliência
+
+- É o conjunto de estratégias adotadas intencionalmente para a adaptação de um sistemas quando uma falha ocorre.
+- Ter estratégias de resiliência nos possibilita minimizar os riscos de perde de dados e transações importantes para o negócio
+
+### Quais as estratégias de resiliência?
+
+- Proteger e ser protegido
+  - Um sistema em uma arquitetura distribuída precisa adotar mecanismos de autopreservação para garantir ao máximo sua operação com qualidade.
+  - Um sistema não pode ser egoísta ao ponto de realizar mais requisições em um sistema que está falhando
+- Um sistema lento no ar muitas vezes é pior do que um sistema fora do ar (efeito dominó)
+
+### Health Check
+
+- Sem sinais vitais não é possível saber a saúde de um sistema
+- Um sistema que não está saudável possui uma chance de se recuperar caso o tráfego para de ser direcionado a ele temporariamente
+- Health check de qualidade
+  - Criar, de forma estratégica, quais os dados representam a saúde do sistema
+
+### Rate Limiting
+
+- Protege o sistema baseado no que ele foi projetado para suportar
+  - Preciso saber o limite das máquinas que estou trabalhando
+- Preferência programada por tipo de client
+
+### Circuit Breaker
+
+- Protege o sistema fazendo com que as requisições feitas para ele sejam negadas.
+  - Circuito fechado => Requisições chegam normalmente
+  - Circuito aberto => Requisições não chegam ao sistema. Erro instantâneo no client.
+  - Meio aberto => Permite uma quantidade limitada de requisições para verificação se o sistema tem condições de voltar ao ar integralmente
+
+### API Gateway
+
+É um centralizador de recebimento de requisições. Todas as requisições passam por ela, que aplica regras para definir o encaminhamento destas.
+
+- Garante que requisições inapropriadas cheguem até o sistema. Exemplo:
+  - Usuário não autenticado
+- Implementa políticas de Rate Limiting, Health Check, etc...
+
+### Service mesh
+
+- Controla o tráfego de rede
+  - Colocar proxies do lado de cada sistema
+  - Cada vez que um sistema A quer comunicar com um serviço B eles se comunicam através de proxy
+  - Tudo que está sendo trafegado na rede pode ser monitorado
+  - Evita implementações de proteção pelo próprio sistema
+  - mTLS
+
+### Comunicação assíncrona
+
+- Evita perda de dados
+- Não há perde de dados no envio de uma transação se o server estiver offline
+- Servidor pode processar a transação em seu tempo quando estiver online
+- Entender com profundidade o message broker / sistema de stream
+
+### Garantias de entrega com Retry
+
+- Linear backoff
+- Exponential backoff
+  - Maior intervalo entre um retry e outro
+- Exponential backoff with Jitter
+  - Para cada chamada eu rodo um algoritmo que gera um pequeno delay no tempo de chamada
+  - Garante que as requisições não cheguem no mesmo momento
+
+### Situações complexas e decisões de alto nível
+
+- O que acontece se o message broker cair?
+- Haverá perde de mensagens?
+- Seu sistema ficará fora do ar?
+- Como garantir resiliência?
