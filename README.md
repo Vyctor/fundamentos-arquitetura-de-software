@@ -39,6 +39,7 @@
     - [Escalando aplicações](#escalando-aplicações)
     - [Escala de banco de dados](#escala-de-banco-de-dados)
     - [Proxy reverso](#proxy-reverso)
+      - [Soluções populares de proxy reverso](#soluções-populares-de-proxy-reverso)
 
 ## Fundamentos
 
@@ -349,3 +350,9 @@ As máquinas devem ser adicionadas e removidas rapidamente.
 
 É um servidor que fica na frente dos servidores web e encaminha as solicitações do cliente, por exemplo um navegador web, para esses servidores web.
 Recebe todas as requisições e baseado na requisição redistribui a solicitação para determinado servidor.
+
+#### Soluções populares de proxy reverso
+
+- Nginx
+- HAProxy (High Availability Proxy)
+- Traefik
